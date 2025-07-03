@@ -3,3 +3,36 @@ power problem
 average in c
 vowel
 two decimal precision
+
+3/7😊
+1. strictly consecutive sequence 
+input:5
+      3 2 1 4 5
+output:
+      
+     2
+code: J
+import java.util.*;
+class Main {
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int count=0;
+        HashMap<Integer,Integer> al = new HashMap<>();
+        for(int i=0;i<n;i++)
+        {
+            int k = sc.nextInt();
+            int tar=k-1;
+            if(al.containsKey(tar))
+            {
+                count++;
+            }
+            al.put(k,i);
+           
+        }
+        System.out.print(count);
+    }
+}
+
+2.
