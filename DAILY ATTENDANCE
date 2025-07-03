@@ -79,3 +79,54 @@ string read(int n, vector<int> book, int target) {
 
     return "NO"; // No pair found
 }
+
+3.ROLL DIE PATTERN:
+
+#include <iostream>
+using namespace std;
+
+// Function to print die face
+void roll(int n) {
+    // Step 1: Initialize 3x3 dot grid
+    char dice[3][3] = {
+        {'.', '.', '.'},
+        {'.', '.', '.'},
+        {'.', '.', '.'}
+    };
+
+    // Step 2: Apply die face logic (modify dot positions)
+    if (n == 1 || n == 3 || n == 5)
+        dice[1][1] = '*'; // center dot
+
+    if (n >= 2)
+        dice[0][0] = dice[2][2] = '*'; // top-left & bottom-right
+
+    if (n >= 3)
+        dice[0][2] = dice[2][0] = '*'; // top-right & bottom-left
+
+    if (n == 6)
+        dice[0][1] = dice[2][1] = '*'; // middle-left & middle-right
+
+    // Step 3: Print the grid
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++)
+            cout << dice[i][j] << " ";
+        cout << endl;
+    }
+
+    cout << endl; // add spacing between dice
+}
+
+int main() {
+    string str;
+    cout << "Enter a string of die faces (e.g. 1): ";
+    cin >> str;
+
+    cout << "\nDie Patterns:\n";
+    for (char ch : str) {
+        int num = ch - '0'; // convert char to int
+        roll(num);
+    }
+
+    return 0;
+}
