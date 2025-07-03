@@ -130,3 +130,85 @@ int main() {
 
     return 0;
 }
+
+4.REPLACE THE (0'S IN THE COULUM COUNT IT; AND ARRANGE THE COLUMN IN ASCENDING ORDER AND PRINT THE MATRIX)
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+
+    int r, c;
+    cin >> r >> c;
+    int arr[r][c];
+
+    for(int i = 0; i < r; i++) {
+        for(int j = 0; j < c; j++)
+            cin >> arr[i][j];
+    }
+
+    int zero[c];
+
+    for(int j = 0; j < c; j++) {
+        int count = 0;
+        for(int i = 0; i < r; i++) {
+            if(arr[i][j] == 0)
+                count++;
+        }
+        zero[j] = count;
+    }
+
+    sort(zero, zero + c);
+
+    for(int j = 0; j < c; j++) {
+        int count = zero[j];
+        for(int i = 0; i < r; i++) {
+            arr[i][j] = (i < count) ? 0 : 1;
+        }
+    }
+
+    for(int i = 0; i < r; i++) {
+        for(int j = 0; j < c; j++)
+            cout << arr[i][j] << " ";
+        cout << endl;
+    }
+}
+Input:
+6 5
+0 1 1 0 0
+0 1 0 0 1
+0 1 1 0 0
+1 1 0 0 1
+1 0 1 0 0
+0 0 0 0 0
+This is a 6×5 matrix.
+
+✅ Step-by-step Explanation:
+🔹 Step 1: Count number of 0s in each column:
+Column	Values	No. of 0s
+0	0 0 0 1 1 0	4
+1	1 1 1 1 0 0	2
+2	1 0 1 0 1 0	3
+3	0 0 0 0 0 0	6
+4	0 1 0 1 0 0	4
+
+So the zero counts for each column:
+[4, 2, 3, 6, 4]
+
+🔹 Step 2: Sort columns based on number of 0s:
+Column order based on ascending zero count:
+Column 1 (2 zeros), Column 2 (3 zeros), Columns 0 and 4 (4 zeros), Column 3 (6 zeros)
+
+So the new column order becomes:
+[1, 2, 0, 4, 3]
+
+🧾 Output Matrix (columns rearranged in that order):
+Copy
+Edit
+0 0 0 0 0
+1 0 0 1 0
+1 1 0 0 0
+1 0 1 0 0
+0 1 1 0 0
+0 0 0 0 0
+
